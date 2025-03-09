@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 50% 99%;
+    --foreground: 210 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 15%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 20% 15%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 20% 60%;
+
+    --accent: 152 55% 50%;
+    --accent-foreground: 210 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 0% 100%;
+
+    --border: 210 20% 92%;
+    --input: 210 20% 92%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  * {
+    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply text-foreground font-sans;
+  }
+
+  ::selection {
+    @apply bg-primary/20;
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-sm border border-white/20 shadow-glass;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-in {
+    @apply animate-fade-in;
+  }
+
+  .fade-up {
+    @apply animate-fade-up;
+  }
+
+  .heading-xl {
+    @apply text-2xl md:text-3xl lg:text-4xl font-display font-bold tracking-tight;
+  }
+
+  .heading-lg {
+    @apply text-xl md:text-2xl lg:text-3xl font-display font-bold tracking-tight;
+  }
+
+  .heading-md {
+    @apply text-lg md:text-xl lg:text-2xl font-display font-semibold tracking-tight;
+  }
+
+  .heading-sm {
+    @apply text-base md:text-lg lg:text-xl font-display font-semibold tracking-tight;
+  }
+
+  .body-lg {
+    @apply text-sm md:text-base lg:text-lg leading-relaxed;
+  }
+
+  .body-md {
+    @apply text-xs md:text-sm lg:text-base leading-relaxed;
+  }
+
+  .body-sm {
+    @apply text-xs lg:text-sm leading-relaxed;
+  }
+
+  .page-container {
+    @apply w-full max-w-[105rem] mx-auto px-3 sm:px-4 lg:px-6;
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-opacity-50;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Animations */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@layer utilities {
+  .grid-areas-mobile {
+    display: grid;
+    grid-template-areas:
+      "video"
+      "material"
+      "topics"
+      "comments";
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .grid-areas-desktop {
+    display: grid;
+    grid-template-areas:
+      "video video video video video video video topics topics topics topics topics"
+      "material material material material material material material topics topics topics topics topics"
+      "comments comments comments comments comments comments comments topics topics topics topics topics";
+    grid-template-rows: auto auto auto; /* Ensures rows expand based on content */
+  }
+
+  .grid-areas-expanded {
+    display: grid;
+    grid-template-areas:
+      "video video video video video video video video video video video video"
+      "material material material material material material material topics topics topics topics topics"
+      "comments comments comments comments comments comments comments topics topics topics topics topics";
+    grid-template-rows: auto auto auto; /* Ensures rows expand based on content */
+  }
+
+  /* Assign grid areas to elements */
+  .area-video {
+    grid-area: video;
+  }
+
+  .area-topics {
+    grid-area: topics;
+  }
+
+  .area-material {
+    grid-area: material;
+  }
+
+  .area-comments {
+    grid-area: comments;
+  }
+}
